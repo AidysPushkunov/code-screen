@@ -33,3 +33,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # code-screen
+
+Code-Screen - allows you to save a screenshot of the written code to the clipboard
