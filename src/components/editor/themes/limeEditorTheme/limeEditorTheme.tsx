@@ -1,8 +1,8 @@
 import type { EditorThemeClasses } from 'lexical';
 
-import './PlaygroundEditorTheme.css';
+import './limeEditorTheme.css';
 
-const PlaygroundEditorTheme: EditorThemeClasses = {
+const LimeEditorTheme: EditorThemeClasses = {
     ltr: 'ltr',
     rtl: 'rtl',
     placeholder: 'editor-placeholder',
@@ -74,4 +74,4 @@ const PlaygroundEditorTheme: EditorThemeClasses = {
     },
 };
 
-export { PlaygroundEditorTheme };
+export { LimeEditorTheme };
