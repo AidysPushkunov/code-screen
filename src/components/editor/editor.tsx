@@ -57,7 +57,7 @@ const Editor = () => {
           contentEditable={
             <div className="PlaygroundEditorTheme">
               <div className="editor">
-                <ContentEditable className="relative min-h-[50vh] h-[100%] w-[60vw] p-[15px] bg-[#ffffff] dark:bg-[#23272F] text-[black] dark:text-[white] rounded-[10px] m-[10px] focus:border-teal focus:outline-none"
+                <ContentEditable className="editor_editable relative min-h-[50vh] h-[100%] w-[60vw] p-[15px] bg-[#ffffff] dark:bg-[#23272F] text-[black] dark:text-[white] rounded-[10px] m-[10px] focus:border-teal focus:outline-none"
                 />
               </div>
             </div>
