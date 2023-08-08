@@ -1,6 +1,6 @@
 "use client";
 
-import React, { DOMElement, JSXElementConstructor, useContext } from "react";
+import React, { DOMElement, JSXElementConstructor } from "react";
 
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
@@ -16,12 +16,7 @@ import { HeadingNode } from "@lexical/rich-text";
 import { $getRoot } from "lexical";
 
 import { EditorState } from "lexical";
-import { JsxAttribute } from "typescript";
-import { ValueOf } from "next/dist/shared/lib/constants";
-
-
-const { currentHeightEditor, setCurrentHeightEditor } =
-  React.useContext(Providers);
+import { EditorSizeContext } from "@/app/providers/editorSizeProvider/editorSizeProvider";
 
 const MyCustomAutoFocusPlugin = () => {
   const [editor] = useLexicalComposerContext();
@@ -46,6 +41,7 @@ function initialCode() {
 function OnChangePlugin(props: {
   onChange: (editorState: EditorState) => void;
 }): null {
+  const { setCurrentHeightEditor } = React.useContext(EditorSizeContext);
   const [editor] = useLexicalComposerContext();
   const { onChange } = props;
 
@@ -55,7 +51,7 @@ function OnChangePlugin(props: {
       setCurrentHeightEditor(
         document.querySelector(".editor_editable").clientHeight,
       );
-      console.log(currentHeightEditor);
+      // console.log(currentHeightEditor);
     });
   }, [editor, onChange]);
 
@@ -63,6 +59,9 @@ function OnChangePlugin(props: {
 }
 
 const Editor = () => {
+  const { currentHeightEditor, currentWidthEditor } =
+    React.useContext(EditorSizeContext);
+
   const initialConfig = {
     namespace: "MyEditor",
     editorState: initialCode,
@@ -81,8 +80,9 @@ const Editor = () => {
               <div className="editor">
                 <ContentEditable
                   style={{
-                    width: 700 + "px",
+                    width: currentWidthEditor + "px",
                     height: currentHeightEditor + "px",
+                    padding: 10 + "px",
                   }}
                   className="editor_editable relative min-h-[50vh] h-[100%] p-[15px] bg-[#ffffff] dark:bg-[#23272F] text-[black] dark:text-[white] rounded-[10px] m-[10px] focus:border-teal focus:outline-none"
                 />
