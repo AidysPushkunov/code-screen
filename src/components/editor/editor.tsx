@@ -83,8 +83,9 @@ const Editor = () => {
                     width: currentWidthEditor + "px",
                     height: currentHeightEditor + "px",
                     padding: 10 + "px",
+                    transition: "all .3s",
                   }}
-                  className="editor_editable relative min-h-[50vh] h-[100%] p-[15px] bg-[#ffffff] dark:bg-[#23272F] text-[black] dark:text-[white] rounded-[10px] m-[10px] focus:border-teal focus:outline-none"
+                  className="editor_editable relative h-[100%] p-[15px] bg-[#ffffff] dark:bg-[#23272F] text-[black] dark:text-[white] rounded-[10px] m-[10px] focus:border-teal focus:outline-none"
                 />
               </div>
             </div>
