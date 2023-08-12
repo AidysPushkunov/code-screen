@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ClipBoard } from "../clipboard";
-import { EditorSizeContext } from "@/app/providers/editorSizeProvider/editorSizeProvider";
+import { EditorContext } from "@/app/providers/editorProvider";
 
 const Toolbar = () => {
   const {
@@ -12,7 +12,7 @@ const Toolbar = () => {
     setCurrentWidthEditor,
     paddingEditor,
     setPaddingEditor,
-  } = React.useContext(EditorSizeContext);
+  } = React.useContext(EditorContext);
 
   const [theme, setTheme] = React.useState(true);
 

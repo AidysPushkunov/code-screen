@@ -1,0 +1,1 @@
+export { HtmlPlugin } from './htmlPlugin';

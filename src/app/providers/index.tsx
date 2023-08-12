@@ -1,10 +1,10 @@
 "use client";
 
 // import { ThemeProvider } from '';
-import { EditorSizeProvider } from "./editorSizeProvider";
+import { EditorProvider } from "./editorProvider";
 
 function Providers({ children }: any) {
-  return <EditorSizeProvider>{children}</EditorSizeProvider>;
+  return <EditorProvider>{children}</EditorProvider>;
 }
 
 export { Providers };

@@ -3,16 +3,43 @@
 import React from "react";
 import Image from "next/image";
 
+import { copyImageToClipboard } from 'copy-image-clipboard'
+import { EditorContext } from "@/app/providers/editorProvider";
+
+
 const ClipBoard = () => {
   const [copySuccess, setCopySuccess] = React.useState("");
+  const { code } = React.useContext(EditorContext);
+
+
+  // const url = new URLSearchParams();
+
+  // url.append("code", JSON.stringify(code))
+
+  const req = async () => {
+    let response = await fetch(`http://localhost:3000/api/og}`);
+
+    if (response.ok) { // если HTTP-статус в диапазоне 200-299
+      // получаем тело ответа (см. про этот метод ниже)
+      let json = response.json();
+    } else {
+      alert("Ошибка HTTP: " + response.status);
+    }
+  }
+
+  // console.log(url)
 
   const copyToClipBoard = async (copyMe: any) => {
-    try {
-      await navigator.clipboard.writeText(copyMe);
-      setCopySuccess("Copied!");
-    } catch (err) {
-      setCopySuccess("Failed!");
-    }
+    req();
+    copyImageToClipboard(
+      'http://localhost:3000/api/og?code=Aidys Pushkunov',
+    )
+      .then(() => {
+        console.log('Image Copied')
+      })
+      .catch((e) => {
+        console.log('Error: ', e.message)
+      });
   };
 
   return (

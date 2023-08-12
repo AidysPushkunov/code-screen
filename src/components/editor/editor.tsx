@@ -1,6 +1,6 @@
 "use client";
 
-import React, { DOMElement, JSXElementConstructor } from "react";
+import React from "react";
 
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
@@ -10,25 +10,15 @@ import { $createCodeNode, CodeHighlightNode, CodeNode } from "@lexical/code";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 import { HeadingNode } from "@lexical/rich-text";
 import { $getRoot } from "lexical";
 
-import { EditorState } from "lexical";
-import { EditorSizeContext } from "@/app/providers/editorSizeProvider/editorSizeProvider";
+import { EditorContext } from "@/app/providers/editorProvider";
 
-const MyCustomAutoFocusPlugin = () => {
-  const [editor] = useLexicalComposerContext();
+import { HtmlPlugin } from "./plugins/HtmlPlugin";
 
-  const [copySuccess, setCopySuccess] = React.useState("");
-  const textAreaRef = React.useRef(null);
-  React.useEffect(() => {
-    editor.focus();
-  }, [editor]);
 
-  return null;
-};
 
 function initialCode() {
   const root = $getRoot();
@@ -38,29 +28,12 @@ function initialCode() {
   }
 }
 
-function OnChangePlugin(props: {
-  onChange: (editorState: EditorState) => void;
-}): null {
-  const { setCurrentHeightEditor } = React.useContext(EditorSizeContext);
-  const [editor] = useLexicalComposerContext();
-  const { onChange } = props;
 
-  React.useEffect(() => {
-    return editor.registerUpdateListener(({ editorState }) => {
-      onChange(editorState);
-      setCurrentHeightEditor(
-        document.querySelector(".editor_editable").clientHeight,
-      );
-      // console.log(currentHeightEditor);
-    });
-  }, [editor, onChange]);
-
-  return null;
-}
 
 const Editor = () => {
-  const { currentHeightEditor, currentWidthEditor } =
-    React.useContext(EditorSizeContext);
+  const { currentHeightEditor, currentWidthEditor } = React.useContext(EditorContext);
+  const { setCode } = React.useContext(EditorContext);
+
 
   const initialConfig = {
     namespace: "MyEditor",
@@ -93,11 +66,12 @@ const Editor = () => {
           placeholder={null}
           ErrorBoundary={LexicalErrorBoundary}
         />
-
+        <HtmlPlugin
+          onHtmlChanged={(html) => setCode(html)}
+          initialHtml=''
+        />
         <CodeHighlightPlugin />
-        <MyCustomAutoFocusPlugin />
         <HistoryPlugin />
-        <OnChangePlugin onChange={(ediorState) => console.log(ediorState)} />
       </LexicalComposer>
     </>
   );

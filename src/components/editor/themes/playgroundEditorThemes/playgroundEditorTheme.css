@@ -113,6 +113,12 @@
     overflow-x: auto;
     position: relative;
     tab-size: 2;
+    font-size: 16px;
+}
+
+.editor-code span {
+    font-size: 16px;
+
 }
 
 .editor-code:before {
