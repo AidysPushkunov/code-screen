@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { copyImageToClipboard } from 'copy-image-clipboard'
+import { copyBlobToClipboard } from 'copy-image-clipboard'
 import { EditorContext } from "@/app/providers/editorProvider";
 
 
@@ -11,28 +11,30 @@ const ClipBoard = () => {
   const [copySuccess, setCopySuccess] = React.useState("");
   const { code } = React.useContext(EditorContext);
 
+  // const parser = new DOMParser();
+  // const doc = parser.parseFromString(code, 'text/html');
+  // const all_inputs = doc.querySelectorAll('input');
+  // console.dir(doc);
 
-  // const url = new URLSearchParams();
+  const [codeImage, setCodeImage] = React.useState<any>(null);
 
-  // url.append("code", JSON.stringify(code))
+  const url = new URLSearchParams();
 
-  const req = async () => {
-    let response = await fetch(`http://localhost:3000/api/og}`);
+  url.append("code", JSON.stringify(code))
+  // let codeHTMLContent = new DOMParser().parseFromString(code, "text/html").getElementsByTagName("pre")[0]
 
-    if (response.ok) { // если HTTP-статус в диапазоне 200-299
-      // получаем тело ответа (см. про этот метод ниже)
-      let json = response.json();
-    } else {
-      alert("Ошибка HTTP: " + response.status);
-    }
-  }
 
-  // console.log(url)
+  React.useEffect(() => {
+    fetch(`/api/og/?${url}`)
+      .then((res) => res.blob())
+      .then((blob) => setCodeImage(blob));
+  }, [codeImage, url]);
+
+
 
   const copyToClipBoard = async (copyMe: any) => {
-    req();
-    copyImageToClipboard(
-      'http://localhost:3000/api/og?code=Aidys Pushkunov',
+    copyBlobToClipboard(
+      codeImage,
     )
       .then(() => {
         console.log('Image Copied')
@@ -46,7 +48,7 @@ const ClipBoard = () => {
     <div>
       <div>
         <div
-          onClick={() => copyToClipBoard("some text to copy")}
+          onClick={() => copyToClipBoard('')}
           className="flex cursor-pointer w-[55px] h-[50px]"
         >
           <Image
