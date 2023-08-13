@@ -37,7 +37,7 @@ const ClipBoard = () => {
       codeImage,
     )
       .then(() => {
-        console.log('Image Copied')
+        setCopySuccess('Image Copied')
       })
       .catch((e) => {
         console.log('Error: ', e.message)
