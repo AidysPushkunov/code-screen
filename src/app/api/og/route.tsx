@@ -1,7 +1,6 @@
 // App router includes @vercel/og. next/server
 
 import { ImageResponse } from '@vercel/og';
-import { parseHTML } from './parseHTML';
 
 export const runtime = 'edge';
 
