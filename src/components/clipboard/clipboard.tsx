@@ -55,7 +55,6 @@ const ClipBoard = () => {
             key={13213343}
             className="hover:scale-105 ease-in duration-300"
             src="/copy.png"
-            srcset="/copy.png"
             width={50}
             height={50}
             alt="CopyBoard"

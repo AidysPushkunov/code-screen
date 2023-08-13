@@ -41,7 +41,7 @@ const Toolbar = () => {
 
   function changePadding() {
     let padding = prompt("Change code screen padding: ", paddingEditor);
-    setPaddingEditor(padding);
+    setPaddingEditor(padding || "");
     if (padding === null) {
       padding = paddingEditor;
     }
