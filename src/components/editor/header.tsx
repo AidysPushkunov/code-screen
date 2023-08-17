@@ -14,11 +14,6 @@ const Header: React.FC = () => {
                     Сopy the screenshot of your code to the clipboard
                 </div>
             </div>
-            <img
-                className="w-[4rem] h-[4rem] cursor-pointer origin-center ease-in-out duration-300 hover:rotate-45"
-                alt=""
-                src="/settings.svg"
-            />
         </div >
     )
 }
