@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lexical/headless": "^0.12.0",
     "@lexical/react": "^0.11.3",
     "@lexical/rich-text": "^0.11.3",
     "@types/node": "20.4.5",

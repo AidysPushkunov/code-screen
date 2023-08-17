@@ -8,16 +8,10 @@ export async function GET(request: Request) {
 
     try {
         const { searchParams } = new URL(request.url);
-
         const hasCode: boolean = searchParams.has('code');
-
         const code: any = hasCode ? searchParams.get('code') : 'Hello';
 
-        // const parser = new DOMParser();
-        // const doc = parser.parseFromString(code, 'text/html');
 
-        // console.log(doc);
-        // let codeHTMLContent = new DOMParser().parseFromString(code, "text/html").getElementsByTagName("pre")[0]
         return new ImageResponse(
             (
                 <div
@@ -44,6 +38,9 @@ export async function GET(request: Request) {
                         }}
                     >
                         {code}
+                    </div>
+                    <div>
+
                     </div>
                 </div>
             ),

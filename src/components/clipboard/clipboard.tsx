@@ -2,27 +2,21 @@
 
 import React from "react";
 import Image from "next/image";
-
 import { copyBlobToClipboard } from 'copy-image-clipboard'
 import { EditorContext } from "@/app/providers/editorProvider";
+
 
 
 const ClipBoard = () => {
   const [copySuccess, setCopySuccess] = React.useState("");
   const { code } = React.useContext(EditorContext);
 
-  // const parser = new DOMParser();
-  // const doc = parser.parseFromString(code, 'text/html');
-  // const all_inputs = doc.querySelectorAll('input');
-  // console.dir(doc);
 
   const [codeImage, setCodeImage] = React.useState<any>(null);
 
   const url = new URLSearchParams();
 
   url.append("code", JSON.stringify(code))
-  // let codeHTMLContent = new DOMParser().parseFromString(code, "text/html").getElementsByTagName("pre")[0]
-
 
   React.useEffect(() => {
     fetch(`/api/og/?${url}`)
@@ -42,6 +36,8 @@ const ClipBoard = () => {
       .catch((e) => {
         console.log('Error: ', e.message)
       });
+
+
   };
 
   return (
@@ -52,12 +48,13 @@ const ClipBoard = () => {
           className="flex cursor-pointer w-[55px] h-[50px]"
         >
           <Image
-            key={13213343}
-            className="hover:scale-105 ease-in duration-300"
-            src="/copy.png"
-            width={50}
-            height={50}
+            key={1234}
+            className="absolute right-1 top-1 overflow-hidden cursor-pointer ease-in-out duration-100 hover:scale-[1.1]"
+            data-title="Copy"
+            src="/frame2.svg"
             alt="CopyBoard"
+            width={45}
+            height={45}
           />
           <div className="text-center text-[#000] dark:text-[#fff] m-1">
             {copySuccess}
