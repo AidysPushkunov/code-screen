@@ -47,7 +47,7 @@ const Editor: FunctionComponent = () => {
             <div className="flex justify-center bg-lightgray h-[100vh] w-[100vw] overflow-hidden text-left text-[64px] text-slategray font-inter">
                 <div className="">
                     <Header />
-                    <div className="relative w-[65vw] text-[20px] drop-shadow-xl">
+                    <div className="relative w-[85vw] sm:w-[75vw] text-[20px] drop-shadow-xl">
                         <LexicalComposer initialConfig={initialConfig}>
                             <RichTextPlugin
                                 contentEditable={
@@ -60,7 +60,7 @@ const Editor: FunctionComponent = () => {
                                                 //     padding: 10 + "px",
                                                 //     transition: "all .3s",
                                                 // }}
-                                                className="absolute rounded-lg bg-whitesmoke w-[65vw] h-[70vh] focus:border-teal focus:outline-none"
+                                                className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[75vw] h-[70vh] focus:border-teal focus:outline-none"
                                             />
                                         </div>
                                         <ClipBoard />
