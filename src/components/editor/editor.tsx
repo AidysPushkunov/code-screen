@@ -3,7 +3,7 @@
 import React from "react";
 import { FunctionComponent } from "react";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { Header } from "./header";
+import { Header } from "@/components/header";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -16,6 +16,8 @@ import { EditorContext } from "@/app/providers/editorProvider";
 import { $getRoot } from 'lexical';
 import { HtmlPlugin } from "./plugins/HtmlPlugin";
 import { ClipBoard } from "../clipboard";
+
+
 
 
 
@@ -44,40 +46,39 @@ const Editor: FunctionComponent = () => {
 
     return (
         <>
-            <div className="flex justify-center bg-lightgray h-[100vh] w-[100vw] overflow-hidden text-left text-[64px] text-slategray font-inter">
-                <div className="">
-                    <Header />
-                    <div className="relative w-[85vw] sm:w-[75vw] text-[20px] drop-shadow-xl">
-                        <LexicalComposer initialConfig={initialConfig}>
-                            <RichTextPlugin
-                                contentEditable={
-                                    <div className="PlaygroundEditorTheme">
-                                        <div className="editor">
-                                            <ContentEditable
-                                                // style={{
-                                                //     width: currentWidthEditor + "px",
-                                                //     height: currentHeightEditor + "px",
-                                                //     padding: 10 + "px",
-                                                //     transition: "all .3s",
-                                                // }}
-                                                className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[75vw] h-[70vh] focus:border-teal focus:outline-none"
-                                            />
-                                        </div>
-                                        <ClipBoard />
-                                    </div>
-                                }
-                                placeholder={null}
-                                ErrorBoundary={LexicalErrorBoundary}
-                            />
-                            <HtmlPlugin
-                                onHtmlChanged={(html) => setCode(html)}
-                                initialHtml=''
-                            />
-                            <CodeHighlightPlugin />
-                            <HistoryPlugin />
-                        </LexicalComposer>
-                    </div>
-                </div>
+            {/* <div className="flex justify-center bg-lightgray h-[100vh] w-[100vw] overflow-hidden text-left text-[64px] text-slategray font-inter"> */}
+            {/* <div className=""> */}
+            <div className="relative w-[85vw] sm:w-[60vw] text-[20px] drop-shadow-xl">
+                <LexicalComposer initialConfig={initialConfig}>
+                    <RichTextPlugin
+                        contentEditable={
+                            <div className="PlaygroundEditorTheme">
+                                <div className="editor resize">
+                                    <ContentEditable
+                                        // style={{
+                                        //     width: currentWidthEditor + "px",
+                                        //     height: currentHeightEditor + "px",
+                                        //     padding: 10 + "px",
+                                        //     transition: "all .3s",
+                                        // }}
+                                        className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[60vw] h-[70vh] focus:border-teal focus:outline-none"
+                                    />
+                                </div>
+                                <ClipBoard />
+                            </div>
+                        }
+                        placeholder={null}
+                        ErrorBoundary={LexicalErrorBoundary}
+                    />
+                    <HtmlPlugin
+                        onHtmlChanged={(html) => setCode(html)}
+                        initialHtml=''
+                    />
+                    <CodeHighlightPlugin />
+                    <HistoryPlugin />
+                </LexicalComposer>
+                {/* </div> */}
+                {/* </div> */}
             </div >
         </>
     );

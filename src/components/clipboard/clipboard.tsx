@@ -49,7 +49,7 @@ const ClipBoard = () => {
         >
           <Image
             key={1234}
-            className="absolute right-1 top-1 overflow-hidden cursor-pointer ease-in-out duration-100 hover:scale-[1.1]"
+            className="absolute right-1 top-1 overflow-hidden cursor-pointer"
             data-title="Copy"
             src="/frame2.svg"
             alt="CopyBoard"

@@ -1,12 +1,12 @@
-import { Editor } from "@/components/editor";
+import { CodeEditor } from "@/widgets/codeEditor";
 
 
 export default function Home() {
   return (
     <main>
-      <div className="flex justify-center">
-        <Editor />
-      </div>
+
+      <CodeEditor />
+      {/* </div> */}
     </main>
   )
 }
