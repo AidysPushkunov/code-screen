@@ -4,6 +4,7 @@ import React from "react";
 import { ClipBoard } from "../clipboard";
 import { EditorContext } from "@/app/providers/editorProvider";
 
+
 const Toolbar = () => {
   const {
     currentHeightEditor,

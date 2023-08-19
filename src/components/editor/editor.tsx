@@ -3,7 +3,6 @@
 import React from "react";
 import { FunctionComponent } from "react";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { Header } from "@/components/header";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -18,9 +17,6 @@ import { HtmlPlugin } from "./plugins/HtmlPlugin";
 import { ClipBoard } from "../clipboard";
 
 
-
-
-
 function initialCode() {
     const root = $getRoot();
     if (root.getFirstChild() === null) {
@@ -30,9 +26,7 @@ function initialCode() {
 }
 
 
-
 const Editor: FunctionComponent = () => {
-    // const { currentHeightEditor, currentWidthEditor } = React.useContext(EditorContext);
     const { setCode } = React.useContext(EditorContext);
 
     const initialConfig = {
@@ -46,23 +40,17 @@ const Editor: FunctionComponent = () => {
 
     return (
         <>
-            {/* <div className="flex justify-center bg-lightgray h-[100vh] w-[100vw] overflow-hidden text-left text-[64px] text-slategray font-inter"> */}
-            {/* <div className=""> */}
             <div className="relative w-[85vw] sm:w-[60vw] text-[20px] drop-shadow-xl">
                 <LexicalComposer initialConfig={initialConfig}>
                     <RichTextPlugin
                         contentEditable={
                             <div className="PlaygroundEditorTheme">
-                                <div className="editor resize">
+                                <div className="editor">
                                     <ContentEditable
-                                        // style={{
-                                        //     width: currentWidthEditor + "px",
-                                        //     height: currentHeightEditor + "px",
-                                        //     padding: 10 + "px",
-                                        //     transition: "all .3s",
-                                        // }}
-                                        className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[60vw] h-[70vh] focus:border-teal focus:outline-none"
-                                    />
+                                        className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[60vw] h-[70vh] focus:border-teal focus:outline-none overflow-auto resize-y"
+                                    >
+                                    </ContentEditable>
+
                                 </div>
                                 <ClipBoard />
                             </div>
@@ -77,8 +65,6 @@ const Editor: FunctionComponent = () => {
                     <CodeHighlightPlugin />
                     <HistoryPlugin />
                 </LexicalComposer>
-                {/* </div> */}
-                {/* </div> */}
             </div >
         </>
     );

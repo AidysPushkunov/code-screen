@@ -6,12 +6,9 @@ import { copyBlobToClipboard } from 'copy-image-clipboard'
 import { EditorContext } from "@/app/providers/editorProvider";
 
 
-
 const ClipBoard = () => {
   const [copySuccess, setCopySuccess] = React.useState("");
   const { code } = React.useContext(EditorContext);
-
-
   const [codeImage, setCodeImage] = React.useState<any>(null);
 
   const url = new URLSearchParams();
@@ -36,8 +33,6 @@ const ClipBoard = () => {
       .catch((e) => {
         console.log('Error: ', e.message)
       });
-
-
   };
 
   return (

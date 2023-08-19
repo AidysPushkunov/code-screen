@@ -4,30 +4,26 @@ import {
     MenubarItem,
     MenubarMenu,
     MenubarSeparator,
-    MenubarShortcut,
     MenubarTrigger,
-} from "@/components/ui/menubar"
+} from "@/components/ui/menubar";
 
 
 const MenuBarCodeEditor: React.FC = () => {
     return (
-
-        <Menubar>
-            <MenubarMenu>
-                <MenubarTrigger>Themes</MenubarTrigger>
-                <MenubarContent>
-                    <MenubarItem>
-                        New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-                    </MenubarItem>
-                    <MenubarItem>New Window</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Share</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Print</MenubarItem>
-                </MenubarContent>
-            </MenubarMenu>
-        </Menubar>
-
+        <div className="flex justify-between">
+            <Menubar>
+                <MenubarMenu>
+                    <MenubarTrigger>Themes</MenubarTrigger>
+                    <MenubarContent>
+                        <MenubarItem>Dracula</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>GitHub Theme</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Default</MenubarItem>
+                    </MenubarContent>
+                </MenubarMenu>
+            </Menubar>
+        </div>
     )
 }
 
