@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Header: React.FC = () => {
 
-    const [bulb, setBulb] = React.useState('true')
+    const [bulb, setBulb] = React.useState(true)
 
     return (
         <div className="flex justify-between items-center my-7 max-h-10">
