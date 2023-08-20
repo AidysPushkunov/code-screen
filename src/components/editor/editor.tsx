@@ -1,37 +1,36 @@
 "use client";
 
 import React from "react";
-import { FunctionComponent } from "react";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { FunctionComponent } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { $createCodeNode, CodeHighlightNode, CodeNode } from "@lexical/code";
-import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
-import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
+import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { HeadingNode } from "@lexical/rich-text";
-import { EditorContext } from "@/app/providers/editorProvider";
-import { $getRoot } from 'lexical';
-import { HtmlPlugin } from "./plugins/HtmlPlugin";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
+import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
 import { ClipBoard } from "../clipboard";
 
 
-function initialCode() {
-    const root = $getRoot();
-    if (root.getFirstChild() === null) {
-        const codeNode = $createCodeNode();
-        root.append(codeNode);
-    }
+const onChange = (editorState: any) => {
+    editorState.read(() => {
+        const json = editorState.toJSON();
+        console.log(JSON.stringify(json));
+    })
 }
 
-
 const Editor: FunctionComponent = () => {
-    const { setCode } = React.useContext(EditorContext);
+
+    const EMPTY_CONTENT =
+        '{"root":{"children":[{"children":[],"direction":null,"format":"code","indent":0,"type":"code","version":1}],"direction":null,"format":"code","indent":0,"type":"root","version":1}}';
+
 
     const initialConfig = {
         namespace: "MyEditor",
-        editorState: initialCode,
+        editorState: EMPTY_CONTENT,
         onError: (error: Error) => console.log(error),
         editable: true,
         theme: PlaygroundEditorTheme,
@@ -58,12 +57,9 @@ const Editor: FunctionComponent = () => {
                         placeholder={null}
                         ErrorBoundary={LexicalErrorBoundary}
                     />
-                    <HtmlPlugin
-                        onHtmlChanged={(html) => setCode(html)}
-                        initialHtml=''
-                    />
                     <CodeHighlightPlugin />
                     <HistoryPlugin />
+                    <OnChangePlugin onChange={onChange} />
                 </LexicalComposer>
             </div >
         </>

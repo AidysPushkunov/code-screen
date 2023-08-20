@@ -3,17 +3,17 @@
 import React from "react";
 import Image from "next/image";
 import { copyBlobToClipboard } from 'copy-image-clipboard'
-import { EditorContext } from "@/app/providers/editorProvider";
+
 
 
 const ClipBoard = () => {
   const [copySuccess, setCopySuccess] = React.useState("");
-  const { code } = React.useContext(EditorContext);
+
   const [codeImage, setCodeImage] = React.useState<any>(null);
 
   const url = new URLSearchParams();
 
-  url.append("code", JSON.stringify(code))
+  url.append("code", JSON.stringify('Hello world!'))
 
   React.useEffect(() => {
     fetch(`/api/og/?${url}`)
