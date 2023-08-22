@@ -1,15 +1,14 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import React from 'react';
 import { copyBlobToClipboard } from 'copy-image-clipboard'
 
 
 
 const ClipBoard = () => {
-  const [copySuccess, setCopySuccess] = React.useState("");
-
+  const [copySuccess, setCopySuccess] = React.useState('');
   const [codeImage, setCodeImage] = React.useState<any>(null);
+  const [copy, setCopy] = React.useState('Copy Image')
 
   const url = new URLSearchParams();
 
@@ -36,26 +35,11 @@ const ClipBoard = () => {
   };
 
   return (
-    <div>
-      <div>
-        <div
-          onClick={() => copyToClipBoard('')}
-          className="flex cursor-pointer w-[55px] h-[50px]"
-        >
-          <Image
-            key={1234}
-            className="absolute right-1 top-1 overflow-hidden cursor-pointer"
-            data-title="Copy"
-            src="/frame2.svg"
-            alt="CopyBoard"
-            width={45}
-            height={45}
-          />
-          <div className="text-center text-[#000] dark:text-[#fff] m-1">
-            {copySuccess}
-          </div>
-        </div>
-      </div>
+    <div
+      onClick={() => copyToClipBoard('')}
+      className="absolute top-50 right-[-50px] hover:right-[0] ease-in duration-300  cursor-pointer rounded-l-lg bg-white hover:bg-[#DEB887] text-[12px] text-black pr-[55px] pl-[10px] py-[25px] z-50"
+    >
+      {copy}
     </div>
   );
 };

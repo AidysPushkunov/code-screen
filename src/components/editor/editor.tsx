@@ -12,7 +12,8 @@ import { HeadingNode } from "@lexical/rich-text";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
-import { ClipBoard } from "../clipboard";
+import { ClipBoard } from "@/components/clipboard";
+import { StoryCircle } from "@/components/storyСircle";
 
 
 const onChange = (editorState: any) => {
@@ -39,19 +40,27 @@ const Editor: FunctionComponent = () => {
 
     return (
         <>
-            <div className="relative w-[85vw] sm:w-[60vw] text-[20px] drop-shadow-xl">
+            <div className="relative w-[85vw] sm:w-[60vw] h-[80%] text-[20px] drop-shadow-xl">
+                <div className="flex mb-10">
+                    <StoryCircle />
+                    <StoryCircle />
+                    <StoryCircle />
+                    <StoryCircle />
+                    <StoryCircle />
+                    <StoryCircle />
+                </div>
+            
                 <LexicalComposer initialConfig={initialConfig}>
                     <RichTextPlugin
                         contentEditable={
                             <div className="PlaygroundEditorTheme">
                                 <div className="editor">
                                     <ContentEditable
-                                        className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[60vw] h-[70vh] focus:border-teal focus:outline-none overflow-auto resize-y"
+                                        className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[60vw] h-[60vh] focus:border-teal focus:outline-none overflow-auto resize"
                                     >
                                     </ContentEditable>
 
                                 </div>
-                                <ClipBoard />
                             </div>
                         }
                         placeholder={null}

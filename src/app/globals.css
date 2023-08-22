@@ -7,18 +7,6 @@
     padding: 0;
 }
 
-body {
-    font-size: 16px;
-}
-
-.editor-code {
-    font-size: 40px;
-}
-
-code span {
-    font-size: 13px;
-}
-
-code.editor-code ltr::before {
-    font-size: 16px;
+::-webkit-resizer {
+    display: none;
 }
