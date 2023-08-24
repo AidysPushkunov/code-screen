@@ -4,11 +4,13 @@ import React from 'react';
 import { copyBlobToClipboard } from 'copy-image-clipboard'
 
 
+import Image from 'next/image';
+
 
 const ClipBoard = () => {
   const [copySuccess, setCopySuccess] = React.useState('');
   const [codeImage, setCodeImage] = React.useState<any>(null);
-  const [copy, setCopy] = React.useState('Copy Image')
+  const [copy, setCopy] = React.useState(true)
 
   const url = new URLSearchParams();
 
@@ -36,10 +38,25 @@ const ClipBoard = () => {
 
   return (
     <div
-      onClick={() => copyToClipBoard('')}
-      className="absolute top-50 right-[-50px] hover:right-[0] ease-in duration-300  cursor-pointer rounded-l-lg bg-white hover:bg-[#DEB887] text-[12px] text-black pr-[55px] pl-[10px] py-[25px] z-50"
+      onClick={() => setCopy(!copy)}
+      className="absolute top-50 right-[-50px] hover:right-[0] ease-in duration-300  cursor-pointer rounded-l-lg bg-white text-[12px] text-black pr-[55px] pl-[10px] py-[25px] z-50"
     >
-      {copy}
+      {
+      copy ?
+      <Image
+        src="/clipboard.svg"
+        width={40}
+        height={40}
+        alt="clipboard"
+      />
+      :
+      <Image
+        src="/clipboard-check.svg"
+        width={40}
+        height={40}
+        alt="clipboard"
+      />
+      }
     </div>
   );
 };
