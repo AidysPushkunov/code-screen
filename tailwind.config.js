@@ -21,6 +21,10 @@ module.exports = {
       "6xl": "25px",
     },
   },
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
+
   corePlugins: {
     preflight: false,
   },

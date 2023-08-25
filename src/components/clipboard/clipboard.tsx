@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { copyBlobToClipboard } from 'copy-image-clipboard'
-
+import { Button } from "@/components/ui/button"
 
 import Image from 'next/image';
 
@@ -37,27 +37,10 @@ const ClipBoard = () => {
   };
 
   return (
-    <div
-      onClick={() => setCopy(!copy)}
-      className="absolute top-50 right-[-50px] hover:right-[0] ease-in duration-300  cursor-pointer rounded-l-lg bg-white text-[12px] text-black pr-[55px] pl-[10px] py-[25px] z-50"
-    >
-      {
-      copy ?
-      <Image
-        src="/clipboard.svg"
-        width={40}
-        height={40}
-        alt="clipboard"
-      />
-      :
-      <Image
-        src="/clipboard-check.svg"
-        width={40}
-        height={40}
-        alt="clipboard"
-      />
-      }
-    </div>
+    <Button
+      variant="outline"
+      className='cursor-pointer bg-white'
+    >Copy</Button>
   );
 };
 

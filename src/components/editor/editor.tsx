@@ -41,22 +41,27 @@ const Editor: FunctionComponent = () => {
     return (
         <>
             <div className="relative w-[85vw] sm:w-[60vw] h-[80%] text-[20px] drop-shadow-xl">
-                <div className="flex mb-10">
-                    <StoryCircle />
-                    <StoryCircle />
-                    <StoryCircle />
-                    <StoryCircle />
-                    <StoryCircle />
-                    <StoryCircle />
+                <div className="flex justify-between">
+                    <div className="flex mb-10">
+                        <StoryCircle />
+                        <StoryCircle />
+                        <StoryCircle />
+                        <StoryCircle />
+                        <StoryCircle />
+                        <StoryCircle />
+                    </div>
+                    <div className="mb-10">
+                        <ClipBoard />
+                    </div>
                 </div>
-            
+
                 <LexicalComposer initialConfig={initialConfig}>
                     <RichTextPlugin
                         contentEditable={
                             <div className="PlaygroundEditorTheme">
                                 <div className="editor">
                                     <ContentEditable
-                                        className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[60vw] h-[60vh] focus:border-teal focus:outline-none overflow-auto resize"
+                                        className="absolute rounded-xl scrollbar-hide bg-white w-[85vw] sm:w-[60vw] h-[60vh] focus:border-teal focus:outline-none overflow-auto resize"
                                     >
                                     </ContentEditable>
 
