@@ -6,22 +6,32 @@ import { FunctionComponent } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import { CodeHighlightNode, CodeNode } from "./node";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { HeadingNode } from "@lexical/rich-text";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
 import { LimeEditorTheme } from "./themes/limeEditorTheme";
+import { DraculaEditorTheme } from "./themes/dracula"
 import { ClipBoard } from "@/components/clipboard";
 import { StoryCircle } from "@/components/storyСircle";
-
+import { $getRoot } from 'lexical';
+import { $createCodeNode } from "./node";
 
 const onChange = (editorState: any) => {
     editorState.read(() => {
         const json = editorState.toJSON();
         console.log(JSON.stringify(json));
     })
+}
+
+const initialCode = () => {
+    const root = $getRoot();
+    if (root.getFirstChild() === null) {
+        const codeNode = $createCodeNode();
+        root.append(codeNode);
+    }
 }
 
 const Editor: FunctionComponent = () => {
@@ -32,7 +42,7 @@ const Editor: FunctionComponent = () => {
 
     const initialConfig = {
         namespace: "MyEditor",
-        editorState: EMPTY_CONTENT,
+        editorState: initialCode,
         onError: (error: Error) => console.log(error),
         editable: true,
         theme: PlaygroundEditorTheme,
@@ -44,8 +54,6 @@ const Editor: FunctionComponent = () => {
             <div className="relative w-[85vw] sm:w-[60vw] h-[80%] text-[20px] drop-shadow-xl">
                 <div className="flex justify-between items-center">
                     <div className="flex mb-10">
-                        <StoryCircle />
-                        <StoryCircle />
                         <StoryCircle />
                         <StoryCircle />
                         <StoryCircle />

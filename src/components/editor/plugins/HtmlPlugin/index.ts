@@ -1,1 +1,0 @@
-export { HtmlPlugin } from './htmlPlugin';
