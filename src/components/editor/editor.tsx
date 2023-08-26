@@ -62,7 +62,7 @@ const Editor: FunctionComponent = () => {
                             <div className="PlaygroundEditorTheme">
                                 <div className="editor">
                                     <ContentEditable
-                                        className="absolute rounded-lg p-sm bg-white w-[85vw] sm:w-[60vw] h-[60vh] focus:border-teal focus:outline-none overflow-auto resize"
+                                        className="absolute rounded-lg p-sm bg-white w-[85vw] sm:w-[60vw] h-[60vh] focus:border-teal focus:outline-none overflow-auto resize scrollbar-hide"
                                     >
                                     </ContentEditable>
 
