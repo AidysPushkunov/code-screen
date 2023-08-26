@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { copyBlobToClipboard } from 'copy-image-clipboard'
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 
 import Image from 'next/image';
 
@@ -10,7 +10,7 @@ import Image from 'next/image';
 const ClipBoard = () => {
   const [copySuccess, setCopySuccess] = React.useState('');
   const [codeImage, setCodeImage] = React.useState<any>(null);
-  const [copy, setCopy] = React.useState(true)
+
 
   const url = new URLSearchParams();
 
@@ -38,9 +38,17 @@ const ClipBoard = () => {
 
   return (
     <Button
-      variant="outline"
-      className='cursor-pointer bg-white'
-    >Copy</Button>
+      className={buttonVariants({ variant: "outline" })}
+    >
+
+      <Image
+        src='/clipboard.svg'
+        width={30}
+        height={30}
+        alt='copy-icon'
+      />
+
+      Copy Image</Button>
   );
 };
 

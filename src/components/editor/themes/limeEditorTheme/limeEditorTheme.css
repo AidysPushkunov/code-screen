@@ -118,13 +118,18 @@ code.editor-code ltr::before {
     display: block;
     padding: 8px 8px 8px 52px;
     line-height: 1.53;
-    font-size: 13px;
+    font-size: 20px;
     margin: 0;
     margin-top: 8px;
     margin-bottom: 8px;
     overflow-x: auto;
     position: relative;
     tab-size: 2;
+}
+
+.editor-code span {
+    font-size: 20px;
+
 }
 
 .editor-code:before {

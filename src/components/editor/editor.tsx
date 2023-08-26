@@ -12,6 +12,7 @@ import { HeadingNode } from "@lexical/rich-text";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
+import { LimeEditorTheme } from "./themes/limeEditorTheme";
 import { ClipBoard } from "@/components/clipboard";
 import { StoryCircle } from "@/components/storyСircle";
 
@@ -41,7 +42,7 @@ const Editor: FunctionComponent = () => {
     return (
         <>
             <div className="relative w-[85vw] sm:w-[60vw] h-[80%] text-[20px] drop-shadow-xl">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                     <div className="flex mb-10">
                         <StoryCircle />
                         <StoryCircle />
@@ -61,7 +62,7 @@ const Editor: FunctionComponent = () => {
                             <div className="PlaygroundEditorTheme">
                                 <div className="editor">
                                     <ContentEditable
-                                        className="absolute rounded-lg bg-whitesmoke w-[85vw] sm:w-[60vw] h-[60vh] focus:border-teal focus:outline-none overflow-auto resize"
+                                        className="absolute rounded-lg p-sm bg-white w-[85vw] sm:w-[60vw] h-[60vh] focus:border-teal focus:outline-none overflow-auto resize"
                                     >
                                     </ContentEditable>
 
