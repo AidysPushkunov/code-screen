@@ -1,6 +1,7 @@
-.editor-code {
+/* .editor-code {
     font-size: 40px;
-}
+} */
+
 
 code span {
     font-size: 13px;
@@ -8,6 +9,44 @@ code span {
 
 code.editor-code ltr::before {
     font-size: 16px;
+}
+
+.lined-code-node.line-number {
+    background-color: rgb(240, 242, 245);
+    font-family: Menlo, Consolas, Monaco, monospace;
+    display: block;
+    padding: 8px 8px 8px 52px;
+    line-height: 1.53;
+    font-size: 13px;
+    margin: 0;
+    tab-size: 2;
+    white-space: pre;
+    position: relative;
+}
+
+.lined-code-node.line-number:before {
+    content: attr(data-line-number);
+    position: absolute;
+    background-color: #eee;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #ccc;
+    padding: 8px;
+    color: #777;
+    white-space: pre-wrap;
+    text-align: right;
+    min-width: 25px;
+}
+
+.lined-code-node.line-number:after {
+    content: attr(data-highlight-language);
+    top: 0;
+    right: 3px;
+    padding: 3px;
+    font-size: 10px;
+    text-transform: uppercase;
+    position: absolute;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .editor-ltr {
@@ -133,7 +172,7 @@ code.editor-code ltr::before {
 }
 
 .editor-code.ltr:before {
-    content: attr(data-gutter);
+    content: attr(data-line-number);
     position: absolute;
     /* background-color: #eee; */
     left: 0;
