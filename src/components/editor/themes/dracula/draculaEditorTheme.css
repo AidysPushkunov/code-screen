@@ -1,47 +1,13 @@
+.editor-code {
+    font-size: 40px;
+}
+
 code span {
-    font-size: 20px;
+    font-size: 13px;
 }
 
 code.editor-code ltr::before {
-    font-size: 20px;
-}
-
-.lined-code-node.line-number {
-    font-family: Menlo, Consolas, Monaco, monospace;
-    display: block;
-    padding: 8px 8px 8px 52px;
-    line-height: 1.53;
-    font-size: 20px;
-    margin: 0;
-    margin-top: 10px;
-    tab-size: 2;
-
-    position: relative;
-    overflow-x: hidden;
-    overflow-wrap: break-word;
-}
-
-.lined-code-node.line-number:before {
-    content: attr(data-line-number);
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 8px;
-    color: #777;
-    text-align: right;
-    min-width: 25px;
-}
-
-.lined-code-node.line-number:after {
-    content: attr(data-highlight-language);
-    top: 0px;
-    right: 3px;
-    padding: 3px;
-    font-size: 13px;
-    text-transform: uppercase;
-    position: absolute;
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: -9px;
+    font-size: 16px;
 }
 
 .editor-ltr {
@@ -166,16 +132,18 @@ code.editor-code ltr::before {
     font-size: 20px;
 }
 
-.editor-code.ltr:before {
-    content: attr(data-line-number);
+.editor-code:before {
+    content: attr(data-gutter);
     position: absolute;
+    /* background-color: #eee; */
     left: 0;
     top: 0;
+    /* border-right: 1px solid #ccc; */
     padding: 8px;
     color: #777;
+    white-space: pre-wrap;
     text-align: right;
     min-width: 25px;
-    z-index: 100;
 }
 
 .editor-table {
@@ -484,11 +452,11 @@ code.editor-code ltr::before {
 }
 
 .editor-tokenComment {
-    color: slategray;
+    color: #6272a4;
 }
 
 .editor-tokenPunctuation {
-    color: #999;
+    color: #ff79c6;
 }
 
 .editor-tokenProperty {
@@ -496,7 +464,7 @@ code.editor-code ltr::before {
 }
 
 .editor-tokenSelector {
-    color: #690;
+    color: #50fa7b;
 }
 
 .editor-tokenOperator {
@@ -504,15 +472,15 @@ code.editor-code ltr::before {
 }
 
 .editor-tokenAttr {
-    color: #07a;
+    color: #ffb86c;
 }
 
 .editor-tokenVariable {
-    color: #e90;
+    color: #ff79c6;
 }
 
 .editor-tokenFunction {
-    color: #dd4a68;
+    color: #ff5555;
 }
 
 .editor-mark {

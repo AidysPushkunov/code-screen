@@ -6,15 +6,18 @@ import { FunctionComponent } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import { CodeNode, CodeHighlightNode, $createCodeNode } from "@lexical/code";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { HeadingNode } from "@lexical/rich-text";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
-import { LimeEditorTheme } from "./themes/limeEditorTheme";
 import { ClipBoard } from "@/components/clipboard";
-import { StoryCircle } from "@/components/storyСircle";
+import { CircleButton } from "@/components/circleButton";
+import { $getRoot } from "lexical";
+import { getLinedCodeNodes } from "./node/LinedCodeNode/Overrides";
+import LinedCodePlugin from "./node/LinedCodeNode/LinedCodePlugin";
+import { defaultTheme } from './themes/defaultTheme';
 
 
 const onChange = (editorState: any) => {
@@ -24,19 +27,31 @@ const onChange = (editorState: any) => {
     })
 }
 
+function initialCode() {
+    const root = $getRoot();
+    if (root.getFirstChild() === null) {
+        const codeNode = $createCodeNode();
+        root.append(codeNode);
+    }
+}
+
+
 const Editor: FunctionComponent = () => {
-
-    const EMPTY_CONTENT =
-        '{"root":{"children":[{"children":[],"direction":null,"format":"code","indent":0,"type":"code","version":1}],"direction":null,"format":"code","indent":0,"type":"root","version":1}}';
-
 
     const initialConfig = {
         namespace: "MyEditor",
-        editorState: EMPTY_CONTENT,
+        editorState: initialCode,
         onError: (error: Error) => console.log(error),
         editable: true,
         theme: PlaygroundEditorTheme,
-        nodes: [HeadingNode, CodeNode, CodeHighlightNode],
+        nodes: [
+            HeadingNode,
+            CodeNode,
+            CodeHighlightNode,
+            ...getLinedCodeNodes({
+                activateTabs: true,
+                theme: defaultTheme,
+            })],
     };
 
     return (
@@ -44,12 +59,12 @@ const Editor: FunctionComponent = () => {
             <div className="relative w-[85vw] sm:w-[60vw] h-[80%] text-[20px] drop-shadow-xl">
                 <div className="flex justify-between items-center">
                     <div className="flex mb-10">
-                        <StoryCircle />
-                        <StoryCircle />
-                        <StoryCircle />
-                        <StoryCircle />
-                        <StoryCircle />
-                        <StoryCircle />
+                        <CircleButton />
+                        <CircleButton />
+                        <CircleButton />
+                        <CircleButton />
+                        <CircleButton />
+                        <CircleButton />
                     </div>
                     <div className="mb-10">
                         <ClipBoard />
@@ -72,6 +87,7 @@ const Editor: FunctionComponent = () => {
                         placeholder={null}
                         ErrorBoundary={LexicalErrorBoundary}
                     />
+                    <LinedCodePlugin />
                     <CodeHighlightPlugin />
                     <HistoryPlugin />
                     <OnChangePlugin onChange={onChange} />
@@ -82,3 +98,4 @@ const Editor: FunctionComponent = () => {
 };
 
 export { Editor };
+
