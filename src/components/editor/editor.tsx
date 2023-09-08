@@ -7,25 +7,17 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { CodeNode, CodeHighlightNode, $createCodeNode } from "@lexical/code";
-// import { CodeNode, CodeHighlightNode, $createCodeHighlightNode } from './node';
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { HeadingNode } from "@lexical/rich-text";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
-import { LimeEditorTheme } from "./themes/limeEditorTheme";
 import { ClipBoard } from "@/components/clipboard";
 import { CircleButton } from "@/components/circleButton";
-
 import { $getRoot } from "lexical";
 import { getLinedCodeNodes } from "./node/LinedCodeNode/Overrides";
 import LinedCodePlugin from "./node/LinedCodeNode/LinedCodePlugin";
-
 import { defaultTheme } from './themes/defaultTheme';
-
-
-
-// import { $createCodeNode } from "./node";
 
 
 const onChange = (editorState: any) => {
@@ -34,8 +26,6 @@ const onChange = (editorState: any) => {
         console.log(JSON.stringify(json));
     })
 }
-
-// 1/3 Create LinedCodeNode theme (see Readme for fallback classes)
 
 function initialCode() {
     const root = $getRoot();
@@ -48,23 +38,19 @@ function initialCode() {
 
 const Editor: FunctionComponent = () => {
 
-    // const EMPTY_CONTENT =
-    //     '{"root":{"children":[{"children":[],"direction":null,"format":"code","indent":0,"type":"code","version":1}],"direction":null,"format":"code","indent":0,"type":"root","version":1}}';
-
-
     const initialConfig = {
         namespace: "MyEditor",
         editorState: initialCode,
         onError: (error: Error) => console.log(error),
         editable: true,
-        theme: defaultTheme,
+        theme: PlaygroundEditorTheme,
         nodes: [
             HeadingNode,
             CodeNode,
             CodeHighlightNode,
             ...getLinedCodeNodes({
                 activateTabs: true,
-                // theme: defaultTheme,
+                theme: defaultTheme,
             })],
     };
 
