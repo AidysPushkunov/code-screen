@@ -32,18 +32,6 @@ code.editor-code ltr::before {
     min-width: 25px;
 }
 
-.lined-code-node.line-number:after {
-    content: attr(data-highlight-language);
-    top: 0px;
-    right: 3px;
-    padding: 3px;
-    font-size: 14px;
-    text-transform: uppercase;
-    position: absolute;
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: -9px;
-}
-
 .editor-ltr {
     text-align: left;
 }
