@@ -2,9 +2,9 @@
 import type {
   LinedCodeLineNode,
 } from './LinedCodeLineNode';
-import type {LinedCodeTextNode} from './LinedCodeTextNode';
-import type {NormalizedToken, Token, Tokenizer} from './Prism';
-import type {SerializedCodeNode} from '@lexical/code';
+import type { LinedCodeTextNode } from './LinedCodeTextNode';
+import type { NormalizedToken, Token, Tokenizer } from './Prism';
+import type { SerializedCodeNode } from '@lexical/code';
 import type {
   DOMConversionMap,
   DOMExportOutput,
@@ -18,7 +18,7 @@ import type {
 } from 'lexical';
 
 import { $generateNodesFromSerializedNodes } from '@lexical/clipboard';
-import {CodeNode} from '@lexical/code';
+import { CodeNode } from '@lexical/code';
 import { $generateNodesFromDOM } from '@lexical/html';
 import { $setBlocksType } from '@lexical/selection';
 import {
@@ -29,8 +29,9 @@ import {
   $getSelection,
   $isRangeSelection,
   $isRootNode,
-  $isTextNode} from 'lexical';
-import { EditorThemeClassName } from 'packages/lexical/src/LexicalEditor';
+  $isTextNode
+} from 'lexical';
+import { EditorThemeClassName } from 'lexical/LexicalEditor';
 
 import {
   convertDivElement,
@@ -43,8 +44,8 @@ import {
   $createLinedCodeLineNode,
   $isLinedCodeLineNode,
 } from './LinedCodeLineNode';
-import {$createLinedCodeTextNode} from './LinedCodeTextNode';
-import {getCodeLanguage} from './Prism';
+import { $createLinedCodeTextNode } from './LinedCodeTextNode';
+import { getCodeLanguage } from './Prism';
 import {
   $transferSelection,
   addClassNamesToElement,
@@ -177,7 +178,7 @@ export class LinedCodeNode extends TypelessCodeNode {
   createDOM(): HTMLElement {
     const self = this.getLatest();
     const dom = document.createElement('code');
-    const {language, lineNumbers, theme: codeNodeTheme, themeName} = self.getSettings();
+    const { language, lineNumbers, theme: codeNodeTheme, themeName } = self.getSettings();
 
     if (codeNodeTheme) {
       const { block: blockClasses, numbers: numberClass } = codeNodeTheme;
@@ -229,7 +230,7 @@ export class LinedCodeNode extends TypelessCodeNode {
 
     const prevThemeName = prevNode.__themeName;
     const prevLineNumbers = prevNode.__lineNumbers;
-    const {lineNumbers, theme: codeNodeTheme, themeName} = self.getSettings();
+    const { lineNumbers, theme: codeNodeTheme, themeName } = self.getSettings();
     const { numbers: numberClass } = codeNodeTheme || {};
 
     if (lineNumbers !== prevLineNumbers) {
@@ -257,13 +258,13 @@ export class LinedCodeNode extends TypelessCodeNode {
     return false;
   }
 
-  exportDOM(editor: LexicalEditor): DOMExportOutput {
-    const {element} = super.exportDOM(editor);
+  // exportDOM(editor: LexicalEditor): DOMExportOutput {
+  //   const { element } = super.exportDOM();
 
-    return {
-      element,
-    };
-  }
+  //   return {
+  //     element,
+  //   };
+  // }
 
   static importDOM(): DOMConversionMap {
     // When dealing with code, we'll let the top-level conversion
@@ -462,7 +463,7 @@ export class LinedCodeNode extends TypelessCodeNode {
           const { anchor, focus } = selection;
           const isBackward = selection.isBackward();
 
-          const {topPoint, bottomPoint} = normalizePoints(anchor, focus, isBackward);
+          const { topPoint, bottomPoint } = normalizePoints(anchor, focus, isBackward);
           const topNode = topPoint.getNode();
           const bottomNode = bottomPoint.getNode();
 
@@ -580,7 +581,7 @@ export class LinedCodeNode extends TypelessCodeNode {
           const lexicalNodes: LexicalNode[] = [];
 
           if (lexicalString) {
-            const {nodes} = JSON.parse(lexicalString);
+            const { nodes } = JSON.parse(lexicalString);
             lexicalNodes.push(...$generateNodesFromSerializedNodes(nodes));
           } else if (htmlString) {
             const parser = new DOMParser();
@@ -632,7 +633,7 @@ export class LinedCodeNode extends TypelessCodeNode {
       const { anchor, focus } = selection;
       const isBackward = selection.isBackward();
 
-      const {topPoint, bottomPoint} = normalizePoints(anchor, focus, isBackward);
+      const { topPoint, bottomPoint } = normalizePoints(anchor, focus, isBackward);
       const topNode = topPoint.getNode();
       const bottomNode = bottomPoint.getNode();
 
@@ -816,7 +817,7 @@ export class LinedCodeNode extends TypelessCodeNode {
 
   tokenizePlainText(plainText: string): (string | Token)[] {
     const self = this.getLatest();
-    const {language, tokenizer} = self.getSettings();
+    const { language, tokenizer } = self.getSettings();
     const tokenize = (tokenizer as Tokenizer).tokenize;
 
     return tokenize(plainText, language as string);
@@ -888,7 +889,7 @@ export class LinedCodeNode extends TypelessCodeNode {
 
   getSettingsForCloning(): LinedCodeNodeOptions {
     const self = this.getLatest();
-    const {language, ...rest} = self.getSettings();
+    const { language, ...rest } = self.getSettings();
 
     return {
       ...rest,
