@@ -1,7 +1,7 @@
 /* eslint-disable header/header */
-import type {DOMConversionOutput} from 'lexical';
+import type { DOMConversionOutput } from 'lexical';
 
-import {$createLinedCodeNode} from './LinedCodeNode';
+import { $createLinedCodeNode } from './LinedCodeNode';
 
 export function convertPreElement(domNode: Node): DOMConversionOutput {
   // domNode is a <pre> since we matched it by nodeName
@@ -22,7 +22,7 @@ export function convertPreElement(domNode: Node): DOMConversionOutput {
   return {
     forChild: () => null,
     node: codeNode,
-    preformatted: true,
+    // preformatted: true,
   };
 }
 
@@ -38,7 +38,7 @@ export function convertDivElement(domNode: Node): DOMConversionOutput {
   return {
     forChild: () => null,
     node: codeNode,
-    preformatted: true,
+    // preformatted: true,
   };
 }
 
@@ -58,7 +58,7 @@ export function convertTableElement(domNode: Node): DOMConversionOutput {
   return {
     forChild: () => null,
     node: codeNode,
-    preformatted: true,
+    // preformatted: true,
   };
 }
 
