@@ -6,7 +6,9 @@ import { FunctionComponent } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { CodeNode, CodeHighlightNode, $createCodeNode } from "@lexical/code";
+
+import { CodeNode, CodeHighlightNode } from "./node/CodeNode";
+
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { HeadingNode } from "@lexical/rich-text";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
@@ -14,10 +16,11 @@ import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { PlaygroundEditorTheme } from "./themes/playgroundEditorThemes";
 import { ClipBoard } from "@/components/clipboard";
 import { CircleButton } from "@/components/circleButton";
-import { $getRoot } from "lexical";
 import { getLinedCodeNodes } from "./node/LinedCodeNode/Overrides";
 import LinedCodePlugin from "./node/LinedCodeNode/LinedCodePlugin";
 import { defaultTheme } from './themes/defaultTheme';
+import { ParagraphNode } from "lexical";
+import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
 
 
 const onChange = (editorState: any) => {
@@ -27,31 +30,34 @@ const onChange = (editorState: any) => {
     })
 }
 
-function initialCode() {
-    const root = $getRoot();
-    if (root.getFirstChild() === null) {
-        const codeNode = $createCodeNode();
-        root.append(codeNode);
-    }
-}
-
 
 const Editor: FunctionComponent = () => {
 
     const initialConfig = {
         namespace: "MyEditor",
-        editorState: initialCode,
         onError: (error: Error) => console.log(error),
         editable: true,
         theme: PlaygroundEditorTheme,
         nodes: [
+
             HeadingNode,
             CodeNode,
             CodeHighlightNode,
+
+            {
+
+                replace: ParagraphNode,
+                with: (node: ParagraphNode) => {
+                    return new CodeNode();
+                }
+
+            },
+
             ...getLinedCodeNodes({
                 activateTabs: true,
                 theme: defaultTheme,
             })],
+
     };
 
     return (
@@ -96,6 +102,8 @@ const Editor: FunctionComponent = () => {
         </>
     );
 };
+
+
 
 export { Editor };
 
