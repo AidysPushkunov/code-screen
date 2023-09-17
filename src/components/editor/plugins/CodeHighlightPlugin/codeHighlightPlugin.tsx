@@ -20,8 +20,8 @@ function CodeHighlightPlugin(): JSX.Element | null {
         const codeNode = $createCodeNode();
         selection.insertNodes([codeNode]);
         selection = $getSelection();
-        // if ($isRangeSelection(selection)) selection.insertRawText(textContent);
-      } 
+        if ($isRangeSelection(selection)) selection.insertRawText(textContent);
+      }
 
     })
   }, [editor])
