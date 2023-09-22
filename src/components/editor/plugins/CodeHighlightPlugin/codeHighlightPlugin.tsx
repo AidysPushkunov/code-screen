@@ -1,6 +1,6 @@
 import { $createCodeNode, registerCodeHighlighting } from "@lexical/code";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $getSelection, $isRangeSelection, $getRoot } from "lexical";
+import { $getRoot } from "lexical";
 import { useEffect } from "react";
 
 function CodeHighlightPlugin(): JSX.Element | null {

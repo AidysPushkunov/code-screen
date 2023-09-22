@@ -20,7 +20,6 @@ import { getLinedCodeNodes } from "./node/LinedCodeNode/Overrides";
 import LinedCodePlugin from "./node/LinedCodeNode/LinedCodePlugin";
 import { defaultTheme } from './themes/defaultTheme';
 import { ParagraphNode } from "lexical";
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
 
 
 const onChange = (editorState: any) => {
