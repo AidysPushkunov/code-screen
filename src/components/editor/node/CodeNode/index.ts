@@ -19,4 +19,4 @@ export {
     normalizeCodeLang,
 } from './CodeHighlightNode';
 export type { SerializedCodeNode } from './CodeNode';
-export { $createCodeNode, $isCodeNode, CodeNode } from './CodeNode';
+export { $createCodeNode, CodeNode } from './CodeNode';
