@@ -5,7 +5,7 @@ import type {
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { $getNodeByKey, $getSelection, $isRangeSelection, COMMAND_PRIORITY_EDITOR, COMMAND_PRIORITY_LOW, KEY_ARROW_DOWN_COMMAND, KEY_ARROW_UP_COMMAND, KEY_TAB_COMMAND, MOVE_TO_END, MOVE_TO_START, PASTE_COMMAND } from 'lexical';
-import {mergeRegister} from '@lexical/utils';
+import { mergeRegister } from '@lexical/utils';
 import * as React from 'react';
 
 import {
@@ -20,10 +20,10 @@ import {
   handleMoveTo,
   handleShiftingLines,
 } from './Handlers';
-import {$isLinedCodeLineNode, LinedCodeLineNode} from './LinedCodeLineNode';
-import {$isLinedCodeNode, LinedCodeNode} from './LinedCodeNode';
-import {$isLinedCodeTextNode, LinedCodeTextNode} from './LinedCodeTextNode';
-import {$getLinedCodeNode, getLinesFromSelection} from './utils';
+import { $isLinedCodeLineNode, LinedCodeLineNode } from './LinedCodeLineNode';
+import { $isLinedCodeNode, LinedCodeNode } from './LinedCodeNode';
+import { $isLinedCodeTextNode, LinedCodeTextNode } from './LinedCodeTextNode';
+import { $getLinedCodeNode, getLinesFromSelection } from './utils';
 
 function removeHighlightsWithNoTextAfterImportJSON(
   highlightNode: LinedCodeTextNode,
@@ -52,7 +52,7 @@ function updateHighlightsWhenTyping(highlightNode: LinedCodeTextNode) {
 
       if ($isLinedCodeNode(codeNode)) {
         if (!codeNode.isLineCurrent(line)) {
-          const {topPoint} = getLinesFromSelection(selection);
+          const { topPoint } = getLinesFromSelection(selection);
           // Get lineOffset before update. It may change...
           const lineOffset = line.getLineOffset(topPoint);
 

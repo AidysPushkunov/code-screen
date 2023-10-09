@@ -21,6 +21,10 @@ import LinedCodePlugin from "./node/LinedCodeNode/LinedCodePlugin";
 import { defaultTheme } from './themes/defaultTheme';
 import { ParagraphNode } from "lexical";
 
+import { $getRoot } from "lexical";
+import { $createCodeNode } from "@lexical/code";
+
+
 
 const onChange = (editorState: any) => {
     editorState.read(() => {
@@ -29,11 +33,19 @@ const onChange = (editorState: any) => {
     })
 }
 
+function initialCode() {
+    const root = $getRoot();
+    if (root.getFirstChild() === null) {
+        const codeNode = $createCodeNode();
+        root.append(codeNode);
+    }
+}
 
 const Editor: FunctionComponent = () => {
 
     const initialConfig = {
         namespace: "MyEditor",
+        editorState: initialCode,
         onError: (error: Error) => console.log(error),
         editable: true,
         theme: PlaygroundEditorTheme,
@@ -42,6 +54,7 @@ const Editor: FunctionComponent = () => {
             HeadingNode,
             CodeNode,
             CodeHighlightNode,
+
 
             {
 
@@ -55,7 +68,8 @@ const Editor: FunctionComponent = () => {
             ...getLinedCodeNodes({
                 activateTabs: true,
                 theme: defaultTheme,
-            })],
+            })
+        ],
 
     };
 
@@ -95,7 +109,6 @@ const Editor: FunctionComponent = () => {
                     <LinedCodePlugin />
                     <CodeHighlightPlugin />
                     <HistoryPlugin />
-                    <OnChangePlugin onChange={onChange} />
                 </LexicalComposer>
             </div >
         </>

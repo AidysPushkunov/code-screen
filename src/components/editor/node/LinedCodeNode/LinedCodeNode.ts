@@ -16,6 +16,7 @@ import type {
   Spread,
   TextNode as LexicalTextNode,
 } from 'lexical';
+import { $createCodeNode } from "@lexical/code";
 
 import { $generateNodesFromSerializedNodes } from '@lexical/clipboard';
 import { CodeNode } from '@lexical/code';

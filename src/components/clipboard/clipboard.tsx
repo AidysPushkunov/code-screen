@@ -16,11 +16,11 @@ const ClipBoard = () => {
 
   url.append("code", JSON.stringify('Hello world!'))
 
-  React.useEffect(() => {
-    fetch(`/api/og/?${url}`)
-      .then((res) => res.blob())
-      .then((blob) => setCodeImage(blob));
-  }, [codeImage, url]);
+  // React.useEffect(() => {
+  //   fetch(`/api/og/?${url}`)
+  //     .then((res) => res.blob())
+  //     .then((blob) => setCodeImage(blob));
+  // }, [codeImage, url]);
 
 
 
