@@ -5,6 +5,7 @@ import { useEffect, useLayoutEffect } from "react";
 
 function CodeHighlightPlugin(): JSX.Element | null {
   const [editor] = useLexicalComposerContext();
+  editor._editable = false;
 
 
   // Прослушивать события и когда элемент code станет пустым запретить стирание. 
