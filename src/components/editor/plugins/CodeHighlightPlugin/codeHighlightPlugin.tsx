@@ -14,7 +14,7 @@ function CodeHighlightPlugin(): JSX.Element | null {
     const onKeyDown = (event: KeyboardEvent) => {
       const codeContent = document.getElementsByTagName('code')
       console.log('This code content', codeContent[0].innerText.length)
-      editor._editable = true;
+      editor._editable = false;
 
       if (event.code === 'Backspace') {
 
