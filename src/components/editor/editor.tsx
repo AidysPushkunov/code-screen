@@ -47,7 +47,7 @@ const Editor: FunctionComponent = () => {
         namespace: "MyEditor",
         editorState: initialCode,
         onError: (error: Error) => console.log(error),
-        editable: false,
+        editable: true,
         theme: PlaygroundEditorTheme,
         nodes: [
 
